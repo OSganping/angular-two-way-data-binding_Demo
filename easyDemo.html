@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='myapp'>
+<head>
+	<meta charset="UTF-8">
+	<title>easyDemo</title>
+	<script src="js/lib/angular.js"></script>
+</head>
+<body>
+	<div ng-controller='MainCtrl as mainctrl'>
+		<input type="text" ng-model='mainctrl.a'>
+		{{mainctrl.a}}
+	</div>
+</body>
+	<script type="text/javascript">
+
+
+			var oMyApp = angular.module('myapp',[]);
+
+			oMyApp.controller('MainCtrl',[function(){
+			    self=this;
+                self.a=100;
+			}]);
+
+	</script>
+</html>
+
+<!-- angular中, 核心是数据, 数据的改变可以导致视图的改变 . 并且视图是局部刷新的, angular会自动识别哪里用到了这个更新的数据, 这个叫做脏检查 
+
+在angular中, 最简单的更新视图的方法就是通过表单元素 , 所有的表单控件都可以使用 ng-model指令与控制器中的某一个值进行双向数据绑定, 当控制器中的数据改变时, 视图也就改变了 , 视图值变化,又影响了控制器中的值 ....
+ -->
+

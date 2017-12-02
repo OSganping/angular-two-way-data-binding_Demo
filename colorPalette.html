@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='myapp'>
+<head>
+	<meta charset="UTF-8">
+	<title>colorPalette</title>
+	<script src="js/lib/angular.js"></script>
+	<style>
+        *{margin: 0 auto;text-align: center}
+		#box{width: 200px;height: 200px;border: 2px red solid;}
+	</style>
+</head>
+
+<body ng-controller='MainCtrl as mainctrl' >
+    <!--ng-style 指令为 HTML 元素添加 style 属性-->
+	<div id="box" ng-style='mainctrl.setColor()'></div>
+
+	<br>
+	R:<input type="range" min="0" max="255" ng-model='mainctrl.r'>
+	<!--由于输入的是数字, 所有我们必须将input类型设置为number, 不然报错-->
+	<input type="number" ng-model='mainctrl.r'>
+	<br>
+	G:<input type="range" min="0" max="255" ng-model='mainctrl.g'>
+	<input type="number" ng-model='mainctrl.g'>
+	<br>
+	B:<input type="range" min="0" max="255" ng-model='mainctrl.b'>
+	<input type="number" ng-model='mainctrl.b'>
+
+</body>
+
+	<script type="text/javascript">
+			var oMyApp = angular.module('myapp',[]);
+			oMyApp.controller('MainCtrl',[function(){
+			    self=this;
+                self.r=99;
+                self.g=99;
+                self.b=99;
+//              这个颜色为被动量(由多个属性来决定,例如r,g,b), 必须由函数来返回 , angular中规定这么写
+                this.setColor=function(){
+					return {'background-color':'rgb('+self.r+','+self.g+','+self.b+')'};
+				};
+			}]);
+	</script>
+
+</html>

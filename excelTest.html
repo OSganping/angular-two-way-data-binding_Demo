@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/lib/angular.js"></script>
+    <style>
+        *{margin: 0; padding: 0;margin: 0 auto;font-size: 15px}
+        table{border-collapse: collapse;margin-top: 10%;text-align: center}
+        th,td{
+           width: 60px;
+            height: 20px;
+            border: 1px solid #481298;
+        }
+
+    </style>
+</head>
+<body ng-controller="MainCtrl as mainctrl">
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>语文</th>
+                <th>数学</th>
+                <th>英语</th>
+                <th>删除</th>
+            </tr>
+            <tr ng-repeat="item in mainctrl.data">
+                <td>{{item.pid}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.chinese}}</td>
+                <td>{{item.math}}</td>
+                <td>{{item.english}}</td>
+                <td><input type="button" value="删除" ng-click="mainctrl.remove(item.pid)"></td>
+            </tr>
+        </table>
+
+        <br>
+
+
+
+
+        <form style="width:520px;text-align: center;border: 2px solid deepskyblue">
+            结果{{mainctrl.objForm}}
+            <br>
+             ID:&nbsp;&nbsp;&nbsp;<input type="text" ng-model="mainctrl.objForm.pid">
+            <br>
+            姓名:<input type="text" ng-model="mainctrl.objForm.name">
+            <br>
+            语文:<input type="text" ng-model="mainctrl.objForm.chinese">
+            <br>
+            数学<input type="text" ng-model="mainctrl.objForm.math">
+            <br>
+            英语<input type="text" ng-model="mainctrl.objForm.english">
+            <br>
+            <input type="button" value="插入" ng-click="mainctrl.add()">
+            <br>
+        </form>
+
+
+<script>
+
+    var objMyApp = angular.module('myapp',[]);
+
+    objMyApp.controller('MainCtrl',[function () {
+
+        this.data = [
+            {'pid':2, 'name':'gp', 'chinese':99, 'math':98, 'english':97},
+            {'pid':3, 'name':'hmf', 'chinese':99, 'math':98, 'english':97},
+            {'pid':6, 'name':'gs', 'chinese':99, 'math':98, 'english':97},
+            {'pid':0, 'name':'gyp', 'chinese':99, 'math':98, 'english':97},
+        ];
+
+        self= this;
+
+        self.objForm={};
+
+        this.add =function () {
+            self.data.push(self.objForm);
+            self.objForm={};
+        };
+
+
+        this.remove=function (pid) {
+            for (var i= 0; i<self.data.length;i++){
+                if (self.data[i].pid == pid){
+                    self.data.splice(i,1);
+                }
+            }
+        }
+
+    }]);
+</script>
+
+</body>
+</html>
