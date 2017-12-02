@@ -26,6 +26,7 @@
                 <th>英语</th>
                 <th>删除</th>
             </tr>
+            <!-- 使用ng-repeat遍历数据 -->
             <tr ng-repeat="item in mainctrl.data">
                 <td>{{item.pid}}</td>
                 <td>{{item.name}}</td>
@@ -82,6 +83,7 @@
         };
 
 
+        
         this.remove=function (pid) {
             for (var i= 0; i<self.data.length;i++){
                 if (self.data[i].pid == pid){
